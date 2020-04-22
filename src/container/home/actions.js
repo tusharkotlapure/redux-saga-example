@@ -9,7 +9,7 @@ export const getProductList = () => ({ type: "GET_PRODUCTS" });
 function* fetchProducts() {
     try {
         yield put(requestProducts());
-        const payload = yield axios.get('https://jsonplaceholder.typicode.com/photos').then(response => response.data);
+        const payload = yield axios.get('https://jsonplaceholder.typicode.com/photos').then(response => response.data.splice(0, 20));
         yield put(productListSuccess(payload));
     } catch (e) {
         yield put(productListFailure(e));
@@ -19,3 +19,6 @@ function* fetchProducts() {
 export function* watchProductList() {
     yield takeEvery('GET_PRODUCTS', fetchProducts);
 }
+
+export const addProductToCart = (payload) => ({ type: "ADD_CART_PRODUCT", payload });
+export const removeProductFromCart = (productId, count) => ({ type: "REMOVE_CART_PRODUCT", payload: { productId, count } })

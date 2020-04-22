@@ -17,6 +17,7 @@ export default function listingStore(state = initialData, action) {
                 ...state,
                 isTableDataFetching: false,
                 tableData: action.payload,
+                errorData: '',
             };
 
         case 'FETCH_TABLEDATA_FAILURE':
@@ -24,6 +25,7 @@ export default function listingStore(state = initialData, action) {
                 ...state,
                 isTableDataFetching: false,
                 errorData: action.payload,
+                tableData: null,
             }
         default:
             return state;

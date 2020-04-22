@@ -1,30 +1,29 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getProductList } from './actions';
+import { getProductList, addProductToCart, removeProductFromCart } from './actions';
+import ErrorData from '../../component/ErrorData';
+import ProductList from '../../component/product/ProductList';
 
 class Home extends React.Component {
     componentDidMount() {
         this.props.getProductList();
     }
+
     render() {
         const {
-            isListingFetching,
-            listingData,
             errorData,
+            listingData,
+            addProductToCart,
+            isListingFetching,
+            removeProductFromCart
         } = this.props;
+
+        const updatedListing = !isListingFetching && listingData.map(data => ({ imgUrl: data.thumbnailUrl, imgAlt: data.title, description: data.title, id: data.id }));
+
         return (
-            <div>
+            <div className="container-fluid">
                 {
-                    isListingFetching ? "Loading...." : <div>
-                        {
-                            listingData.map(data => (
-                                <div key={data.id}>
-                                    <img src={data.thumbnailUrl} alt={data.title} />
-                                    <p>{data.title}</p>
-                                </div>
-                            ))
-                        }
-                    </div>
+                    isListingFetching ? "Loading...." : errorData ? <ErrorData /> : <ProductList productList={updatedListing} addProductToCart={addProductToCart} removeProductFromCart={removeProductFromCart} />
                 }
             </div>
         )
@@ -33,6 +32,6 @@ class Home extends React.Component {
 
 const mapStateToProps = (state) => (state.homeReducer);
 
-const mapDispatchToProps = ({ getProductList })
+const mapDispatchToProps = ({ getProductList, addProductToCart, removeProductFromCart })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
