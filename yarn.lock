@@ -1661,9 +1661,9 @@ adjust-sourcemap-loader@2.0.0:
     object-path "0.11.4"
     regex-parser "2.2.10"
 
-ag-grid-community@^23.0.2:
-  version "23.0.2"
-  resolved "https://registry.yarnpkg.com/ag-grid-community/-/ag-grid-community-23.0.2.tgz#81fc92ce9e47c75e854337a1e2d8ef950c3a1d51"
+ag-grid-community@^31.3.4:
+  version "31.3.4"
+  resolved "https://registry.yarnpkg.com/ag-grid-community/-/ag-grid-community-31.3.4.tgz#d9397672d6941aebc633a37b2b32e3637aa05642"
 
 ag-grid-react@^23.0.3:
   version "23.0.3"
